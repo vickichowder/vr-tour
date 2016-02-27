@@ -11,18 +11,9 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 @app.route("/")
 def main():
-	return 'Vr-tour | Hacktech 2016'
+	return render_template('reglogin.html')
 
-#
-# @app.route("/weAte", methods=['GET'])
-# def weAte():
-# 	# fetching from form
-# 	guests = request.form['names']
-# 	donation = request.form['amount']
-# 	if (guests!="") and (donation!=""):
-# 		return render_template('index.html')
-# 	else:
-# 		return render_template('index.html')
+
 
 if __name__ == "__main__":
 	app.run(port=8000)

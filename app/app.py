@@ -2,6 +2,7 @@ from flask import Flask, render_template, json, request, redirect
 from datetime import datetime
 
 app = Flask(__name__)
+app.debug = True
 
 # MySQL config
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -11,7 +12,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 @app.route("/")
 def main():
-	return render_template('reglogin.html')
+	return render_template('registerlogin.html')
 
 
 

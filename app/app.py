@@ -15,8 +15,13 @@ def main():
 	return render_template('home.html')
 
 @app.route("/login")
-def comingUp():
+def login():
 	return render_template('login.html')
+
+
+@app.route("/signup")
+def signUp():
+	return render_template('signup.html')
 
 if __name__ == "__main__":
 	app.run(port=8000)

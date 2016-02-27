@@ -12,9 +12,11 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 @app.route("/")
 def main():
+	return render_template('home.html')
+
+@app.route("/login")
+def comingUp():
 	return render_template('login.html')
-
-
 
 if __name__ == "__main__":
 	app.run(port=8000)

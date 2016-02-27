@@ -12,7 +12,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 @app.route("/")
 def main():
-	return render_template('registerlogin.html')
+	return render_template('login.html')
 
 
 

@@ -3,6 +3,8 @@ from datetime import datetime
 from os import getenv
 import pymssql
 
+global guides
+guides = {}
 server = 'tourwithme.database.windows.net'
 user = 'tourwithme@tourwithme'
 password = 'vr-tour2016'
@@ -20,6 +22,20 @@ app.debug = True
 def main():
     return render_template('destinations.html')
 
+@app.route("/add_guide")
+def add_guide():
+    if 'REPLACE_WITH_CITY' in guides:
+        guides['REPLACE_WITH_CITY'].append(request['peerjs'])
+    else:
+        guides['REPLACE_WITH_CITY'] = [request['peerjs']]
+
+@app.route("/tourist")
+def tourist():
+    if 'REPLACE_WITH_CITY' in guides:
+        ret = guides['REPLACE_WITH_CITY'][0]
+        del guides['REPLACE_WITH_CITY'][0]
+        return ret
+
 @app.route("/home")
 def home():
     return render_template('home.html')
@@ -27,6 +43,10 @@ def home():
 @app.route("/destinations")
 def destinations():
     return render_template('destinations.html')
+
+@app.route("/city/<city>")
+def city(c):
+    return render_template('city.html', c)
 
 @app.route("/requests")
 def requests():
@@ -39,7 +59,6 @@ def tourguidelist():
 @app.route("/starttour")
 def starttour():
     return render_template('starttour.html')
-
 
 @app.route("/inprogress")
 def inprogress():

@@ -12,7 +12,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 @app.route("/")
 def main():
-	return render_template('endtour.html')
+	return render_template('home.html')
 
 @app.route("/login")
 def login():
@@ -46,6 +46,10 @@ def inprogress():
 @app.route("/endtour")
 def endtour():
 	return render_template('endtour.html')
+
+@app.route("/billingpage")
+def billingpage():
+	return render_template('billingpage.html')
 
 if __name__ == "__main__":
 	app.run(port=8000)

@@ -16,7 +16,7 @@ app.debug = True
 
 @app.route("/")
 def main():
-	return render_template('inprogress.html')
+	return render_template('requests.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():

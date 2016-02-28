@@ -1,7 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700);
-
-
 body {
+    background-image: url("https://s-media-cache-ak0.pinimg.com/originals/a7/5a/cc/a75acc79594ae8c86f0d0282b1817c27.jpg");
+    background-color: #cccccc;
+}
+
+
+body1 {
     background-color: rgb(229, 229, 229);
     padding-top: 100px;
     padding-bottom: 30px;

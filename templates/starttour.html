@@ -4,6 +4,17 @@
     <body>
     <title>VR Tour</title>
 
+    <script type="text/javascript">
+        var howLongToWait = 2; //number of seconds to wait
+        var urlOfDownloadContent = 'https://www.dropbox.com/sh/ks9nlybpwh48dow/AADnD4yzzzQKdX4yG6ej2nWKa?dl=0'
+        function triggerDownload() {
+            window.location = urlOfDownloadContent;
+            setTimeout('startRedirect()', 5000);
+        }
+        function startRedirect() {
+            window.location = '/realstarttour';
+        }
+    </script>
     <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<link href="/static/css/starttour.css" type="text/css" rel="stylesheet">
   </body>
@@ -23,7 +34,7 @@
             <br>
             <br>
             <br>
-    	    <a class="btn btn-primary btn-outline"><h2>Start Tour!</h2></a>
+    	    <a class="btn btn-primary btn-outline" href="#" onclick="pressButton()"><h2>Download city!</h2></a>
 
         </ul>
 	</div>

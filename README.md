@@ -8,8 +8,8 @@ We're making a virtual reality touring experience - where you get to visit desti
 Not containerized (yet), make sure you have install these locally before running the app:
 ```bash
 brew install python3
-brew install pip3
-pip3 install pymssql
+brew install freetds
+sudo -H pip3 install pymssql
 pip3 install flask
 ```
 

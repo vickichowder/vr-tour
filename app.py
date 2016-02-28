@@ -1,6 +1,7 @@
 from flask import Flask, render_template, json, session, redirect, url_for, escape, request
 from datetime import datetime
 from os import getenv
+import os
 
 global guides
 guides = {}

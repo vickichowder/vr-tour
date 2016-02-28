@@ -5,7 +5,12 @@
     }
 /*Remove that CSS*/
 
-
+h1 {
+  color: rgb(248,248,255);
+}
+h3 {
+  color: rgb(248,248,255);
+}
 
 button {
   margin: 20px 0;
@@ -82,20 +87,4 @@ button.btn-default:before {
     }
     button.btn-info:after {
   border-color: #269abc transparent #269abc #269abc;
-    }
-
-
-    button.btn-warning:before {
-  border-color: #d58512 #d58512 #d58512 transparent;
-    }
-    button.btn-warning:after {
-  border-color: #d58512 transparent #d58512 #d58512;
-    }
-
-
-    button.btn-danger:before {
-  border-color: #ac2925 #ac2925 #ac2925 transparent;
-    }
-    button.btn-danger:after {
-  border-color: #ac2925 transparent #ac2925 #ac2925;
     }

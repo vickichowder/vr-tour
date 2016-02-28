@@ -25,9 +25,9 @@ def main():
 @app.route("/add_guide")
 def add_guide():
     if 'REPLACE_WITH_CITY' in guides:
-        guides['REPLACE_WITH_CITY'].append(request['peerjs'])
+        guides['REPLACE_WITH_CITY'].append(request.form['peerjs'])
     else:
-        guides['REPLACE_WITH_CITY'] = [request['peerjs']]
+        guides['REPLACE_WITH_CITY'] = [request.form['peerjs']]
 
 @app.route("/tourist")
 def tourist():

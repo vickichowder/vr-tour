@@ -30,6 +30,15 @@ def add_guide():
         guides['REPLACE_WITH_CITY'] = [request.form['peerjs']]
     return len(guides['REPLACE_WITH_CITY'])
 
+@app.route("/download")
+def download():
+    r = requests.get('https://www.dropbox.com/s/5e5y27gpx0ai3sr/TourIt.exe?dl=1')
+    with open('TourIt.exe', 'wb') as f:
+        f.write(r.content)
+    r = requests.get('https://www.dropbox.com/sh/ks9nlybpwh48dow/AADnD4yzzzQKdX4yG6ej2nWKa?dl=1')
+    with open('TourIt.exe', 'wb') as f:
+        f.write(r.content)
+
 @app.route("/tourist")
 def tourist():
     if 'REPLACE_WITH_CITY' in guides:

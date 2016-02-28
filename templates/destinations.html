@@ -5,8 +5,12 @@
 
     <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 		<link href="/static/css/destinations.css" type="text/css" rel="stylesheet">
-		<script src="/static/js/dest.js" type="text/css" rel="stylesheet">
 		<script type="text/javascript" src="/static/js/jquery-2.1.4.js"></script>
+        <script>
+    function download() {
+        $.get({url:"/download"});
+    }
+        </script>
 	</head>
 
 
@@ -50,7 +54,7 @@
 
 					    <div class="row">
 
-					<button id="paris" type="button" class="btn btn-default ribbon">Paris</button>
+					<button id="paris" onclick="download()" class="btn btn-default ribbon">Paris</a>
 
 					<button id="ny" type="button" class="btn btn-primary ribbon">New York</button>
 

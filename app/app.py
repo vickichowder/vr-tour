@@ -1,23 +1,35 @@
-from flask import Flask, render_template, json, request, redirect
+from flask import Flask, render_template, json, session, redirect, url_for, escape, request
 from datetime import datetime
+from os import getenv
+import pymssql
+#
+# server = 'tourwithme.database.windows.net'
+# user = 'tourwithme'
+# password = 'vr-tour2016'
+# database = 'dev'
+#
+# conn = pymssql.connect(server, user, password, database)
+# cursor = conn.cursor()
 
 app = Flask(__name__)
 app.debug = True
-
-# MySQL config
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ' '
-app.config['MYSQL_DATABASE_DB'] = 'vr-tour'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 @app.route("/")
 def main():
 	return render_template('starttour.html')
 
-@app.route("/login")
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-	return render_template('login.html')
-
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'],
+                       request.form['password']):
+            return log_the_user_in(request.form['username'])
+        else:
+            error = 'Invalid username/password'
+    # the code below is executed if the request method
+    # was GET or the credentials were invalid
+    return render_template('login.html', error=error)
 
 @app.route("/signup")
 def signUp():

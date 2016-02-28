@@ -16,7 +16,7 @@ try:
 	cursor.executemany(
     "INSERT INTO tourist VALUES ('name', 'phone', 'street_number', 'street_name', 'city', 'state', 'country', 'username', 'password')",
     [('Bob The Tourist', '4160983878', '34', 'University Avenue', 'Sunnyvale', 'CA', 'US', 'bobby', 'bobby')])
-	conn.commit
+	conn.commit()
 	print('inserted into table')
 	cursor.execute('select * from tourist;')
 except:
@@ -27,7 +27,7 @@ app.debug = True
 
 @app.route("/")
 def main():
-	return render_template('inprogress.html')
+	return render_template('home.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -42,8 +42,12 @@ def login():
     # was GET or the credentials were invalid
     return render_template('requests.html', error=error)
 
-@app.route("/signup")
+@app.route("/home")
 def signUp():
+	return render_template('home.html')
+
+@app.route("/signup")
+def signup():
 	return render_template('signup.html')
 
 @app.route("/destinations")

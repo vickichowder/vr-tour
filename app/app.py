@@ -2,14 +2,25 @@ from flask import Flask, render_template, json, session, redirect, url_for, esca
 from datetime import datetime
 from os import getenv
 import pymssql
-#
-# server = 'tourwithme.database.windows.net'
-# user = 'tourwithme'
-# password = 'vr-tour2016'
-# database = 'dev'
-#
-# conn = pymssql.connect(server, user, password, database)
-# cursor = conn.cursor()
+
+server = 'tourwithme.database.windows.net'
+user = 'tourwithme@tourwithme'
+password = 'vr-tour2016'
+database = 'dev'
+port = '1433'
+
+conn = pymssql.connect(server, user, password, database, port)
+cursor = conn.cursor()
+
+try:
+	cursor.executemany(
+    "INSERT INTO tourist VALUES ('name', 'phone', 'street_number', 'street_name', 'city', 'state', 'country', 'username', 'password')",
+    [('Bob The Tourist', '4160983878', '34', 'University Avenue', 'Sunnyvale', 'CA', 'US', 'bobby', 'bobby')])
+	conn.commit
+	print('inserted into table')
+	cursor.execute('select * from tourist;')
+except:
+	print('did not insert')
 
 app = Flask(__name__)
 app.debug = True

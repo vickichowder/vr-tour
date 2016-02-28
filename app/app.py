@@ -27,7 +27,7 @@ app.debug = True
 
 @app.route("/")
 def main():
-	return render_template('requests.html')
+	return render_template('destinationslocals.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -74,5 +74,10 @@ def endtour():
 @app.route("/billingpage")
 def billingpage():
 	return render_template('billingpage.html')
+
+@app.route("/destinationslocals")
+def destinationslocals():
+	return render_template('destinationslocals.html')
+
 if __name__ == "__main__":
 	app.run(port=8000)

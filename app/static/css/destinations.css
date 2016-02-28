@@ -4,7 +4,10 @@
     margin-left:5%;
     }
 /*Remove that CSS*/
-
+body {
+    background-image: url("http://wallpaperhdwide.com/wp-content/gallery/black-and-white-city-wallpaper/white-black-art-mixed-city-and-346650.jpg");
+    background-color: #cccccc;
+}
 
 
 button {

@@ -51,5 +51,17 @@ def tourguidelist():
 def starttour():
 	return render_template('starttour.html')
 
+
+@app.route("/inprogress")
+def inprogress():
+	return render_template('inprogress.html')
+
+@app.route("/endtour")
+def endtour():
+	return render_template('endtour.html')
+
+@app.route("/billingpage")
+def billingpage():
+	return render_template('billingpage.html')
 if __name__ == "__main__":
 	app.run(port=8000)

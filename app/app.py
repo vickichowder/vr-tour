@@ -16,15 +16,16 @@ try:
 except:
     print('did not connect to database')
 
-# try:
-#     cursor.executemany(
-#     "INSERT INTO tourist VALUES ('name', 'phone', 'street_number', 'street_name', 'city', 'state', 'country', 'username', 'password')",
-#     [('Bob The Tourist', '4160983878', '34', 'University Avenue', 'Sunnyvale', 'CA', 'US', 'bobby', 'bobby')])
-#     conn.commit()
-#     print('inserted into table')
-#     cursor.execute('select * from tourist;')
-# except:
-#     print('did not insert')
+try:
+    cursor.execute(
+    "INSERT INTO tourist VALUES ('name', 'phone', 'street_number', 'street_name', 'city', 'state', 'country', 'username', 'password')",
+    [('Bob The Tourist', '4160983878', '34', 'University Avenue', 'Sunnyvale', 'CA', 'US', 'bobby', 'bobby')])
+    conn.commit()
+    print('inserted into table')
+    print(cursor.execute('select * from tourist;').fetchone())
+except Exception as e:
+	print(e)
+	print('did not insert')
 
 app = Flask(__name__)
 app.debug = True
@@ -35,14 +36,16 @@ def main():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
-    if request.method == 'POST':
+	error = None
+	if request.method == 'POST':
 		password = cursor.execute('select password from tourist where username=%s', request.form['username'])
-        if request.form['password'] != password.fetchone()[0]:
-            error = 'Invalid Credentials. Please try again.'
-        else:
-            return redirect(url_for('home'))
-    return render_template('login.html', error=error)
+		print(password.fetchone()[0])
+
+		if request.form['password'] != password.fetchone()[0]:
+			error = 'Invalid Credentials. Please try again.'
+		else:
+			return redirect(url_for('home'))
+	return render_template('login.html', error=error)
 
 @app.route("/home")
 def signUp():
@@ -81,12 +84,9 @@ def endtour():
 def billingpage():
     return render_template('billingpage.html')
 
-<<<<<<< HEAD
 @app.route("/destinationslocals")
 def destinationslocals():
 	return render_template('destinationslocals.html')
 
-=======
->>>>>>> cc8a7935142c1958356b29dc00a7b897c5387995
 if __name__ == "__main__":
     app.run(port=8000)

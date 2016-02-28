@@ -16,7 +16,7 @@ app.debug = True
 
 @app.route("/")
 def main():
-	return render_template('endtour.html')
+	return render_template('home.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -50,14 +50,6 @@ def tourguidelist():
 @app.route("/starttour")
 def starttour():
 	return render_template('starttour.html')
-
-@app.route("/inprogress")
-def inprogress():
-	return render_template('inprogress.html')
-
-@app.route("/endtour")
-def endtour():
-	return render_template('endtour.html')
 
 if __name__ == "__main__":
 	app.run(port=8000)

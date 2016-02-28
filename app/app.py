@@ -12,7 +12,7 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 @app.route("/")
 def main():
-	return render_template('home.html')
+	return render_template('starttour.html')
 
 @app.route("/login")
 def login():
@@ -22,6 +22,25 @@ def login():
 @app.route("/signup")
 def signUp():
 	return render_template('signup.html')
+
+@app.route("/destinations")
+def destinations():
+	return render_template('destinations.html')
+
+@app.route("/requests")
+def requests():
+	return render_template('requests.html')
+
+@app.route("/tourguidelist")
+def tourguidelist():
+	return render_template('tourguidelist.html')
+
+@app.route("/starttour")
+def starttour():
+	return render_template('starttour.html')
+
+
+
 
 if __name__ == "__main__":
 	app.run(port=8000)

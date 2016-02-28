@@ -17,18 +17,53 @@ except:
     print('did not connect to database')
 
 try:
-    cursor.execute(
-    "INSERT INTO tourist VALUES ('name', 'phone', 'street_number', 'street_name', 'city', 'state', 'country', 'username', 'password')",
-    [('Bob The Tourist', '4160983878', '34', 'University Avenue', 'Sunnyvale', 'CA', 'US', 'bobby', 'bobby')])
+    cursor.execute("""
+        IF OBJECT_ID('persons', 'U') IS NOT NULL
+        DROP TABLE persons
+        CREATE TABLE persons (
+        id INT ,
+        name VARCHAR(100),
+        salesrep VARCHAR(100),
+        PRIMARY KEY(id)
+        )
+    """)
+    cursor.execute("SELECT COUNT(id) FROM persons;")
+    length = cursor.fetchone()[0]
+    print(length+1)
+    cursor.executemany(
+        "INSERT INTO persons (id, name, salesrep) VALUES (%d, %s, %s)",
+        [(length+1, 'John Smith', 'John Doe')])
     conn.commit()
-    print('inserted into table')
-    print(cursor.execute('select * from tourist;').fetchone())
+
+    cursor.execute('SELECT * FROM persons')
+    row = cursor.fetchone()
+    while row:
+        print("ID=%d, Name=%s" % (row[0], row[1]))
+        row = cursor.fetchone()
+
+    conn.close()
 except Exception as e:
-	print(e)
-	print('did not insert')
+    print(e)
+    print('did not insert')
 
 app = Flask(__name__)
 app.debug = True
+
+def valid_login(username, password):
+    cursor.execute("SELECT password FROM tourist where username=" + username)
+    is_tourist = cursor.fetchone()[0]
+    if is_tourist:
+        if password == is_tourist:
+            return True
+        else:
+            return False
+    else:
+        cursor.execute("SELECT password FROM host where username=" + username)
+        is_host = cursor.fetchone()[0]
+        if password == is_host:
+            return True
+        else:
+            return False
 
 @app.route("/")
 def main():
@@ -36,24 +71,36 @@ def main():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	error = None
-	if request.method == 'POST':
-		password = cursor.execute('select password from tourist where username=%s', request.form['username'])
-		print(password.fetchone()[0])
+    error = None
+    if request.method == 'POST':
+        if valid_login(request.form['username'], request.form['password']):
+            return ""
+        else:
+            return 'Invalid username/password'
+    # the code below is executed if the request method
+    # was GET or the credentials were invalid
+    else:
+        return render_template('login.html', error=error)
 
-		if request.form['password'] != password.fetchone()[0]:
-			error = 'Invalid Credentials. Please try again.'
-		else:
-			return redirect(url_for('home'))
-	return render_template('login.html', error=error)
 
 @app.route("/home")
-def signUp():
+def home():
     return render_template('home.html')
 
-@app.route("/signup")
+@app.route('/signup', methods=['POST', 'GET'])
 def signup():
-    return render_template('signup.html')
+    error = None
+    if request.method == 'POST':
+        user_type = request.form['reg_person']
+        cursor.execute("SELECT COUNT(id) FROM" + user_type +";")
+        next = cursor.fetchone()[0]+1
+        cursor.executemany(
+            "INSERT INTO" + user_type + "(id, tourist_name, username, password, email) VALUES (%d, %s, %s, %s, %s, %s, %s)",
+            [(next, request.form['reg_full_name'], request.form['reg_username'], request.form['reg_password'], request.form['full_email'])])
+        conn.commit()
+
+    return ""
+    #return render_template('signup.html')
 
 @app.route("/destinations")
 def destinations():
@@ -86,7 +133,7 @@ def billingpage():
 
 @app.route("/destinationslocals")
 def destinationslocals():
-	return render_template('destinationslocals.html')
+    return render_template('destinationslocals.html')
 
 if __name__ == "__main__":
     app.run(port=8000)

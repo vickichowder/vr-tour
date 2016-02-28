@@ -32,13 +32,17 @@ $("#register-form").validate({
 // Form Submission
 $("#register-form").submit(function() {
   remove_loading($(this));
-
-  if(options['useAJAX'] == true)
-  {
-    // Dummy AJAX request (Replace this with your AJAX code)
-    // If you don't want to use AJAX, remove this
-    dummy_submit_form($(this));
-
+  if(options['useAJAX'] == true) {
+        $.post({
+            url: "/signup",
+            success: function(data) {
+                if (data != "") {
+                    alert(data);
+                } else {
+                    window.location.href = "/destinations";
+                }
+            }
+        });
     // Cancel the normal submission.
     // If you don't want to use AJAX, remove this
     return false;

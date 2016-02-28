@@ -26,17 +26,22 @@
 	// Form Submission
   $("#login-form").submit(function() {
   	remove_loading($(this));
-    //
-		// if(options['useAJAX'] == true)
-		// {
-		// 	// Dummy AJAX request (Replace this with your AJAX code)
-		//   // If you don't want to use AJAX, remove this
-  	//   dummy_submit_form($(this));
-    //
-		//   // Cancel the normal submission.
-		//   // If you don't want to use AJAX, remove this
-  	//   return false;
-		// }
+
+		if(options['useAJAX'] == true) {
+			$.post({
+                url:"/login",
+                success: function (data) {
+                   if (data != "") {
+                       alert(data);
+                   } else {
+                        window.location.href = "/destinations";
+                   }
+                }
+            })
+		  // Cancel the normal submission.
+		  // If you don't want to use AJAX, remove this
+  	  return false;
+		}
   });
 
 

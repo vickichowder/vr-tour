@@ -81,5 +81,12 @@ def endtour():
 def billingpage():
     return render_template('billingpage.html')
 
+<<<<<<< HEAD
+@app.route("/destinationslocals")
+def destinationslocals():
+	return render_template('destinationslocals.html')
+
+=======
+>>>>>>> cc8a7935142c1958356b29dc00a7b897c5387995
 if __name__ == "__main__":
     app.run(port=8000)

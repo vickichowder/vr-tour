@@ -35,12 +35,13 @@ def login():
     if request.method == 'POST':
         if valid_login(request.form['username'],
                        request.form['password']):
-            return log_the_user_in(request.form['username'])
+            log_the_user_in(request.form['username'])
+            return ""
         else:
-            error = 'Invalid username/password'
+            return 'Invalid username/password'
     # the code below is executed if the request method
     # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
+    #return render_template('login.html', error=error)
 
 @app.route("/home")
 def signUp():
@@ -48,7 +49,8 @@ def signUp():
 
 @app.route("/signup")
 def signup():
-	return render_template('signup.html')
+	return ""
+	#return render_template('signup.html')
 
 @app.route("/destinations")
 def destinations():

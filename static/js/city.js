@@ -16,9 +16,11 @@ $(function() {
         }
     );
     var me = new Peer({key: "y2hctf90xq63l3di"});
-    outgoing.on('stream', function(stream) {
-        var audio = $('<audio autoplay />').appendTo('body');
-        audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
+    me.on('call', function(incoming) {
+        incoming.on('stream', function(stream) {
+            var audio = $('<audio autoplay />').appendTo('body');
+            audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
+        }
     });
     $("#guide").on("click", function () {
         $.post({
@@ -36,7 +38,8 @@ $(function() {
             success: function(peer) {
                 var outgoing = me.call(peer, stream);
                 outgoing.on('stream', function(stream) {
-                    //TODO ??
+                    var audio = $('<audio autoplay />').appendTo('body');
+                    audio[0].src = (URL || webkitURL || mozURL).createObjectURL(stream);
                 });
             }
     });

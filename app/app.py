@@ -28,9 +28,7 @@ app.debug = True
 @app.route("/")
 def main():
 
-	return render_template('destinationslocals.html')
-
-	return render_template('home.html')
+	return render_template('tourguidelist.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -39,13 +37,12 @@ def login():
     if request.method == 'POST':
         if valid_login(request.form['username'],
                        request.form['password']):
-            log_the_user_in(request.form['username'])
-            return ""
+            return log_the_user_in(request.form['username'])
         else:
-            return 'Invalid username/password'
+            error = 'Invalid username/password'
     # the code below is executed if the request method
     # was GET or the credentials were invalid
-    #return render_template('login.html', error=error)
+    return render_template('login.html', error=error)
 
 @app.route("/home")
 def signUp():
@@ -53,8 +50,7 @@ def signUp():
 
 @app.route("/signup")
 def signup():
-	return ""
-	#return render_template('signup.html')
+	return render_template('signup.html')
 
 @app.route("/destinations")
 def destinations():
@@ -85,7 +81,7 @@ def endtour():
 def billingpage():
 	return render_template('billingpage.html')
 
-<<<<<<< HEAD
+
 @app.route("/destinationslocals")
 def destinationslocals():
 	return render_template('destinationslocals.html')

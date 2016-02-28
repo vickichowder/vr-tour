@@ -28,13 +28,14 @@ def add_guide():
         guides['REPLACE_WITH_CITY'].append(request.form['peerjs'])
     else:
         guides['REPLACE_WITH_CITY'] = [request.form['peerjs']]
+    return len(guides['REPLACE_WITH_CITY'])
 
 @app.route("/tourist")
 def tourist():
     if 'REPLACE_WITH_CITY' in guides:
         ret = guides['REPLACE_WITH_CITY'][0]
         del guides['REPLACE_WITH_CITY'][0]
-        return ret
+        return ret + " number of tour guides online!"
 
 @app.route("/home")
 def home():

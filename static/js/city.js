@@ -27,7 +27,7 @@ $(function() {
             url: "/add_guide"
             data: {"peerjs":me.id},
             success: function(data) {
-                // TODO Update counter
+                $("#no_guides").text(data);
             }
         });
     });

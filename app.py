@@ -1,18 +1,17 @@
 from flask import Flask, render_template, json, session, redirect, url_for, escape, request
 from datetime import datetime
 from os import getenv
-import pymssql
 
 global guides
 guides = {}
-server = 'tourwithme.database.windows.net'
-user = 'tourwithme@tourwithme'
-password = 'vr-tour2016'
-database = 'dev'
-port = '1433'
+#server = 'tourwithme.database.windows.net'
+#user = 'tourwithme@tourwithme'
+#password = 'vr-tour2016'
+#database = 'dev'
+#port = '1433'
 
-conn = pymssql.connect(server, user, password, database, port)
-cursor = conn.cursor()
+#conn = pymssql.connect(server, user, password, database, port)
+#cursor = conn.cursor()
 
 app = Flask(__name__)
 app.debug = True

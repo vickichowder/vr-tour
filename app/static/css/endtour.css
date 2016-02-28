@@ -1,0 +1,32 @@
+body {
+    background-image: url("http://www.technocrazed.com/wp-content/uploads/2015/12/Paris-Wallpaper-background-33.jpg");
+    background-color: #cccccc;
+}
+.container{
+    text-align: center;
+}
+h1{
+	color: #FFFFFF;
+  font-size: 70px;
+}
+
+h3{
+	color: #FFFFFF;
+}
+.row{
+	margin-top: 40px;
+}
+
+.slk{
+	background-color: #E599EF;
+	border-style: solid;
+    border-width: 2px;
+    border-radius: 25px;
+    box-shadow: 1px 1px 1px 1px rgba(136, 136, 136, 0.58);
+}
+
+.slk:hover{
+	background-color: #C36FCE;
+	box-shadow: 1.5px 1.5px 1.5px 1.5px #888888;
+
+}

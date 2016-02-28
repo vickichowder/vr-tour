@@ -12,15 +12,15 @@ port = '1433'
 conn = pymssql.connect(server, user, password, database, port)
 cursor = conn.cursor()
 
-try:
-	cursor.executemany(
-    "INSERT INTO tourist VALUES ('name', 'phone', 'street_number', 'street_name', 'city', 'state', 'country', 'username', 'password')",
-    [('Bob The Tourist', '4160983878', '34', 'University Avenue', 'Sunnyvale', 'CA', 'US', 'bobby', 'bobby')])
-	conn.commit()
-	print('inserted into table')
-	cursor.execute('select * from tourist;')
-except:
-	print('did not insert')
+# try:
+# 	cursor.executemany(
+#     "INSERT INTO tourist VALUES ('name', 'phone', 'street_number', 'street_name', 'city', 'state', 'country', 'username', 'password')",
+#     [('Bob The Tourist', '4160983878', '34', 'University Avenue', 'Sunnyvale', 'CA', 'US', 'bobby', 'bobby')])
+# 	conn.commit()
+# 	print('inserted into table')
+# 	cursor.execute('select * from tourist;')
+# except:
+# 	print('did not insert')
 
 app = Flask(__name__)
 app.debug = True
@@ -40,7 +40,7 @@ def login():
             error = 'Invalid username/password'
     # the code below is executed if the request method
     # was GET or the credentials were invalid
-    return render_template('requests.html', error=error)
+    return render_template('login.html', error=error)
 
 @app.route("/home")
 def signUp():
@@ -78,5 +78,6 @@ def endtour():
 @app.route("/billingpage")
 def billingpage():
 	return render_template('billingpage.html')
+
 if __name__ == "__main__":
 	app.run(port=8000)

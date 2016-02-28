@@ -27,7 +27,7 @@ app.debug = True
 
 @app.route("/")
 def main():
-	return render_template('home.html')
+	return render_template('inprogress.html')
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -40,7 +40,7 @@ def login():
             error = 'Invalid username/password'
     # the code below is executed if the request method
     # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
+    return render_template('requests.html', error=error)
 
 @app.route("/signup")
 def signUp():
